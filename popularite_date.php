@@ -4,6 +4,8 @@
     <title>Data Vizualisation - TP1</title>
     <!-- Inclusion CSS (librairie + perso) -->
     <link rel="stylesheet" type="text/css" href="css/jquery.jqplot.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap_theme.css">
     <link rel="stylesheet" type="text/css" href="css/dataviz.css">
 
     <!-- Inclusion JS (librairie + scripts de création de graph) -->
@@ -15,9 +17,17 @@
 </head>
 <body>
 <?php include ('structure/header.php'); ?>
-<div id="content">
-    <div><span id="info1"></span></div>
-    <div class="plot" data-user-id="<?=$_GET['user_id']?>" id="chart32"></div>
+
+<section>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div><span id="info1"></span></div>
+            <div class="plot" data-user-id="<?= $_GET['user_id']?>" id="chart32"></div>
+        </div>
+    </div>
+</div>
+</section>
 </div>
 <?php include ('structure/footer.php'); ?>
 </body>
