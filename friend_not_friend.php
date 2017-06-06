@@ -17,15 +17,15 @@
 <body>
 <?php include ('structure/header.php'); ?>
 <div id="content">
-    <div><span id="info1"></span></div>
-    <div class="plot" data-user-id="<?=$_GET['user_id']?>" id="chart1"></div>
+    <div><span id="info31"></span></div>
+    <div class="plot" data-user-id="<?=$_GET['user_id']?>" id="chart31"></div>
 </div>
 <?php include ('structure/footer.php'); ?>
 </body>
 </html>
 <script>
     $(document).ready(function() {
-        var user_id =  $('#chart1').data('user-id');
+        var user_id =  $('#chart31').data('user-id');
         var amis;
         var messages;
         jQuery.ajax({
@@ -56,7 +56,7 @@
                 var s1 = [(messages_amis / messages.length) * 100, (messages_non_amis / messages.length) * 100];
                 var ticks = ['Messages amis', 'Messages non amis'];
 
-                plot1 = $.jqplot('chart1', [s1], {
+                plot1 = $.jqplot('chart31', [s1], {
                     animate: !$.jqplot.use_excanvas,
                     seriesDefaults: {
                         renderer: $.jqplot.BarRenderer,
@@ -70,9 +70,9 @@
                     },
                     highlighter: {show: false}
                 });
-                $('#chart1').bind('jqplotDataClick',
+                $('#chart31').bind('jqplotDataClick',
                     function (ev, seriesIndex, pointIndex, data) {
-                        $('#info1').html('valeur: '+data[1]+' %');
+                        $('#info31').html('valeur: '+data[1]+' %');
                     }
                 );
             });
