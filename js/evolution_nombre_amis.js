@@ -15,12 +15,7 @@ $(document).ready(function(){
 
 
 	function generateDateAxis(idDiv, data){
-		//var line1=[['2008-08-12 4:00PM',4], ['2008-09-12 4:00PM',6.5], ['2008-10-12 4:00PM',5.7], ['2008-11-12 4:00PM',9], ['2008-12-12 4:00PM',8.2]];
-		console.log(data);
-		//console.log(data[0][2]);
-		//for(var i=0; i<data.length; i++){
-		//	console.log(data[i][2]);
-		//}
+		var evol = [];
 		//
 		data.sort(function(a, b) {
             var dt1 = Date.parse(a[3]);
@@ -30,19 +25,16 @@ $(document).ready(function(){
             if (dt2 < dt1) return 1;
             return 0;
         });
-        console.log(data);
         for (var i = 0; i<data.length; i++) {
             data[i].reverse();
-            if (i > 0 && data[i][0] == data[i-1][0]) {
-                data[i][2] = (data[i-1][1] + data[i][1]) / 2;
-                delete data[i-1];
-            }
-            delete data[i][2];
-            delete data[i][3];
-        }
-        notations = notations.filter(function(n){return n !== undefined});
+			if (i > 0 && data[i][0] == data[i-1][0]) {
+				evol[i-1] = [data[i][0], i+1];
+			} else {
+				evol[i] = [data[i][0], i+1];
+			}
 
-		var plot1 = $.jqplot(idDiv, [data], {
+        }
+		var plot1 = $.jqplot('chart22', [evol], {
 			title:'Evolution du nombre d\'amis',
 			axes:{
 				xaxis:{
@@ -50,7 +42,7 @@ $(document).ready(function(){
 				},
 				yaxis: {
                         min: 0,
-                        max: 5
+                        max: 20,
                 }
 			},
 			series:[{lineWidth:4, markerOptions:{style:'circle'}}]
@@ -62,7 +54,6 @@ $(document).ready(function(){
 			1 - Date Axis
 	****************************************/
 	getRequest("webservices/liste_amis_user.php?user="+user_id, function(data) {
-		console.log(data);
 		generateDateAxis("chart22", data);
 	});
 });
