@@ -148,6 +148,17 @@
 						</section>
 					</div>
 					<hr>
+
+					<div class="post-preview">
+						<h2 class="post-title">
+							Evolution du nombre d'amis au fil du mois
+						</h2>
+						<section class="post-meta">
+							<div class="plot" id="chart22" data-user-id="<?=$id?>"></div>
+						</section>
+					</div>
+					<hr>
+
 				</div>
 			</div>
 			<?php include ('structure/footer.php'); ?>
