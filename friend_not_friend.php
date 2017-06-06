@@ -18,23 +18,24 @@
 <?php include ('structure/header.php'); ?>
 <div id="content">
     <div><span id="info1"></span></div>
-    <div class="plot" id="chart1"></div>
+    <div class="plot" data-user-id="<?=$_GET['user_id']?>" id="chart1"></div>
 </div>
 <?php include ('structure/footer.php'); ?>
 </body>
 </html>
 <script>
     $(document).ready(function() {
+        var user_id =  $('#chart1').data('user-id');
         var amis;
         var messages;
         jQuery.ajax({
             type: "GET",
-            url: "/webservices/messages_user.php?user=0"
+            url: "/webservices/messages_user.php?user="+user_id
         }).done(function (data) {
             messages = $.parseJSON(data);
             jQuery.ajax({
                 type: "GET",
-                url: "/webservices/liste_amis_user.php?user=0"
+                url: "/webservices/liste_amis_user.php?user="+user_id
             }).done(function (data) {
                 amis = $.parseJSON(data);
                 var messages_amis = 0;
