@@ -25,7 +25,6 @@
 		while ($row = mysqli_fetch_array($result)) {
 			$result_request[] = array(intval($row[0]), intval($row[1]), $row[2]);
 		}
-
 		mysqli_free_result($result);
 	
 		// Déconnexion de la BDD
@@ -34,5 +33,4 @@
 	
 	// Renvoyer le résultat au javascript
 	echo json_encode($result_request);
-
 ?>
