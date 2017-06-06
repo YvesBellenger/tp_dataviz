@@ -13,9 +13,6 @@ $(document).ready(function(){
 		});
 	}
 
-	//$.each(data, function(i, data)){
-
-	//}
 
 	function generateDateAxis(idDiv, data){
 		//var line1=[['2008-08-12 4:00PM',4], ['2008-09-12 4:00PM',6.5], ['2008-10-12 4:00PM',5.7], ['2008-11-12 4:00PM',9], ['2008-12-12 4:00PM',8.2]];
@@ -25,7 +22,25 @@ $(document).ready(function(){
 		//	console.log(data[i][2]);
 		//}
 		//
-	
+		data.sort(function(a, b) {
+            var dt1 = Date.parse(a[3]);
+            var dt2 = Date.parse(b[3]);
+
+            if (dt1 < dt2) return -1;
+            if (dt2 < dt1) return 1;
+            return 0;
+        });
+        console.log(data);
+        for (var i = 0; i<data.length; i++) {
+            data[i].reverse();
+            if (i > 0 && data[i][0] == data[i-1][0]) {
+                data[i][2] = (data[i-1][1] + data[i][1]) / 2;
+                delete data[i-1];
+            }
+            delete data[i][2];
+            delete data[i][3];
+        }
+        notations = notations.filter(function(n){return n !== undefined});
 
 		var plot1 = $.jqplot(idDiv, [data], {
 			title:'Evolution du nombre d\'amis',

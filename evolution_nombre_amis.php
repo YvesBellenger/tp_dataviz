@@ -23,7 +23,7 @@
 
 		<h2>Evolution du nombre d'amis au fil du mois</h2>
 
-		<div class="plot" id="chart22" data-user-id="<?=$_GET['user_id']?"></div>
+		<div class="plot" id="chart22" data-user-id="<?=$_GET['user_id']?>"></div>
 
 	</div>
 	<div class="plot" id ="chart1"></div>
